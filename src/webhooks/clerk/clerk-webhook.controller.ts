@@ -10,23 +10,30 @@ import {
 import { Webhook } from 'svix'
 import { Request } from 'express'
 import { SupabaseService } from '../../core/database/supabase/supabase.service'
-
-// TODO: Investigate the error of failed Clerk webhook trigger because of data structure
+import {ConfigService} from "@nestjs/config";
 
 interface ClerkUserCreatedEvent {
     type: 'user.created' | 'user.updated' | 'user.deleted'
     data: {
-        id: string
+        id: string;
         email_addresses: Array<{ email_address: string; id: string }>
         primary_email_address_id: string
         first_name: string | null
         last_name: string | null
+        image_url: string | null
     }
 }
 
 @Controller('webhooks/clerk')
 export class ClerkWebhookController {
-    constructor(private readonly supabaseService: SupabaseService) {}
+    private readonly webhookSecret: string
+
+    constructor(
+        private readonly supabaseService: SupabaseService,
+        private readonly configService: ConfigService
+    ) {
+        this.webhookSecret = this.configService.getOrThrow<string>('clerk.webhookSecret')
+    }
 
     @Post()
     async handleWebhook(
@@ -39,7 +46,7 @@ export class ClerkWebhookController {
             throw new BadRequestException('Missing Svix headers')
         }
 
-        const wh = new Webhook(process.env.CLERK_WEBHOOK_SECRET!)
+        const wh = new Webhook(this.webhookSecret)
         let event: ClerkUserCreatedEvent
 
         try {
@@ -64,7 +71,7 @@ export class ClerkWebhookController {
             const { error } = await this.supabaseService.adminClient
                 .from('users')
                 .upsert({
-                    id,                        // Clerk user ID
+                    id,
                     email: primaryEmail,
                     first_name: first_name ?? null,
                     last_name: last_name ?? null,
