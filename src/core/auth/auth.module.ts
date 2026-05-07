@@ -1,10 +1,12 @@
 import { Module } from '@nestjs/common'
 import { PassportModule } from '@nestjs/passport'
-import { ClerkStrategy } from './clerk/strategy/clerk.strategy'
+import {ClerkStrategy} from "./strategy/clerk.strategy";
+import {ClerkAuthGuard} from "./guard/clerk-auth.guard";
+import {UsersModule} from "../../modules/users/users.module";
 
 @Module({
-    imports: [PassportModule],
-    providers: [ClerkStrategy],
-    exports: [ClerkStrategy],
+    imports: [PassportModule.register({ defaultStrategy: "clerk" }), UsersModule],
+    providers: [ClerkStrategy, ClerkAuthGuard],
+    exports: [ClerkAuthGuard],
 })
 export class AuthModule {}

@@ -26,11 +26,11 @@ interface ClerkUserCreatedEvent {
 
 @Controller('webhooks/clerk')
 export class ClerkWebhookController {
-    private readonly webhookSecret: string
+    private readonly webhookSecret: string;
 
     constructor(
         private readonly supabaseService: SupabaseService,
-        private readonly configService: ConfigService
+        private readonly configService: ConfigService,
     ) {
         this.webhookSecret = this.configService.getOrThrow<string>('clerk.webhookSecret')
     }
@@ -68,10 +68,10 @@ export class ClerkWebhookController {
 
             if (!primaryEmail) throw new BadRequestException('No primary email found')
 
-            const { error } = await this.supabaseService.adminClient
+            const { error } = await this.supabaseService.client
                 .from('users')
                 .upsert({
-                    id,
+                    clerk_id: id,
                     email: primaryEmail,
                     first_name: first_name ?? null,
                     last_name: last_name ?? null,

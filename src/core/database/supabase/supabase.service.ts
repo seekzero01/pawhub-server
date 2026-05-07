@@ -4,7 +4,7 @@ import { createClient, SupabaseClient } from '@supabase/supabase-js'
 
 @Injectable()
 export class SupabaseService {
-    readonly adminClient: SupabaseClient
+    readonly client: SupabaseClient
     private readonly url: string
     private readonly anonKey: string
 
@@ -13,7 +13,7 @@ export class SupabaseService {
         this.anonKey = this.configService.getOrThrow<string>('supabase.key')
         const serviceRoleKey = this.configService.getOrThrow<string>('supabase.roleKey')
 
-        this.adminClient = createClient(this.url, serviceRoleKey)
+        this.client = createClient(this.url, serviceRoleKey)
     }
 
     getClientForUser(clerkToken: string): SupabaseClient {

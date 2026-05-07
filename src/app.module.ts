@@ -3,8 +3,11 @@ import { AuthModule } from './core/auth/auth.module'
 import { SupabaseModule } from './core/database/supabase/supabase.module'
 import { WebhooksModule } from './webhooks/webhooks.module'
 import {ConfigModule} from "@nestjs/config";
+import { PetsModule } from './modules/pets/pets.module';
+import { UsersModule } from './modules/users/users.module';
+import { DashboardModule } from './modules/dashboard/dashboard.module';
 import supabaseConfig from "./core/database/supabase/config/supabase.config";
-import clerkConfig from "./core/auth/clerk/config/clerk.config";
+import clerkConfig from "./core/auth/config/clerk.config";
 
 @Module({
   imports: [
@@ -15,7 +18,10 @@ import clerkConfig from "./core/auth/clerk/config/clerk.config";
       }),
     AuthModule,
     SupabaseModule,
-    WebhooksModule
+    WebhooksModule,
+    PetsModule,
+    UsersModule,
+    DashboardModule
   ],
 })
 export class AppModule {}
