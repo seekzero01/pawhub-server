@@ -1,7 +1,7 @@
 import {
   Injectable,
   NotFoundException,
-  InternalServerErrorException,
+  InternalServerErrorException, ForbiddenException,
 } from '@nestjs/common';
 import {SupabaseService} from "../../core/database/supabase/supabase.service";
 import {Pet} from "./types/pets.types";
@@ -91,6 +91,19 @@ export class PetsService {
 
     if (error) {
       throw new InternalServerErrorException('Failed to delete pet');
+    }
+  }
+
+  async assertOwnership(userId: string, petId: string): Promise<void> {
+    const { data } = await this.supabase.client
+        .from('pets')
+        .select('id')
+        .eq('id', petId)
+        .eq('user_id', userId)
+        .single();
+
+    if (!data) {
+      throw new ForbiddenException(`Pet ${petId} not found or access denied`);
     }
   }
 }

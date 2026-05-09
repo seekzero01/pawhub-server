@@ -6,6 +6,8 @@ import {ConfigModule} from "@nestjs/config";
 import { PetsModule } from './modules/pets/pets.module';
 import { UsersModule } from './modules/users/users.module';
 import { DashboardModule } from './modules/dashboard/dashboard.module';
+import { AppointmentsModule } from './modules/appointments/appointments.module';
+import { MedicationsModule } from './modules/medications/medications.module';
 import supabaseConfig from "./core/database/supabase/config/supabase.config";
 import clerkConfig from "./core/auth/config/clerk.config";
 
@@ -21,7 +23,9 @@ import clerkConfig from "./core/auth/config/clerk.config";
     WebhooksModule,
     PetsModule,
     UsersModule,
-    DashboardModule
+    DashboardModule,
+    AppointmentsModule,
+    MedicationsModule
   ],
 })
 export class AppModule {}
