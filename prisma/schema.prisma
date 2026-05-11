@@ -1,0 +1,257 @@
+generator client {
+  provider     = "prisma-client"
+  output       = "../src/generated"
+  moduleFormat = "cjs"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// ─────────────────────────────────────────────
+// Better Auth tables
+// ─────────────────────────────────────────────
+
+model User {
+  id            String    @id @default(dbgenerated("gen_random_uuid()"))
+  email         String    @unique
+  emailVerified Boolean   @default(false) @map("email_verified")
+  firstName     String?   @map("first_name")
+  lastName      String?   @map("last_name")
+  avatarUrl     String?   @map("avatar_url")
+  plan          String    @default("free")
+  createdAt     DateTime  @default(now()) @map("created_at")
+  updatedAt     DateTime  @updatedAt @map("updated_at")
+
+  sessions                  Session[]
+  accounts                  Account[]
+  pets                      Pet[]
+  appointments              Appointment[]
+  tasks                     Task[]
+  aiVetConversations        AiVetConversation[]
+  userNotificationSettings  UserNotificationSettings?
+
+  @@map("users")
+}
+
+model Session {
+  id        String   @id @default(dbgenerated("gen_random_uuid()"))
+  expiresAt DateTime @map("expires_at")
+  token     String   @unique
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+  ipAddress String?  @map("ip_address")
+  userAgent String?  @map("user_agent")
+  userId    String   @map("user_id")
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@map("session")
+}
+
+model Account {
+  id                    String    @id @default(dbgenerated("gen_random_uuid()"))
+  accountId             String    @map("account_id")
+  providerId            String    @map("provider_id")
+  userId                String    @map("user_id")
+  user                  User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  accessToken           String?   @map("access_token")
+  refreshToken          String?   @map("refresh_token")
+  idToken               String?   @map("id_token")
+  accessTokenExpiresAt  DateTime? @map("access_token_expires_at")
+  refreshTokenExpiresAt DateTime? @map("refresh_token_expires_at")
+  scope                 String?
+  password              String?
+  createdAt             DateTime  @default(now()) @map("created_at")
+  updatedAt             DateTime  @updatedAt @map("updated_at")
+
+  @@index([userId])
+  @@map("account")
+}
+
+model Verification {
+  id         String   @id @default(dbgenerated("gen_random_uuid()"))
+  identifier String
+  value      String
+  expiresAt  DateTime @map("expires_at")
+  createdAt  DateTime @default(now()) @map("created_at")
+  updatedAt  DateTime @updatedAt @map("updated_at")
+
+  @@index([identifier])
+  @@map("verification")
+}
+
+// ─────────────────────────────────────────────
+// PawHub domain tables
+// ─────────────────────────────────────────────
+
+model UserNotificationSettings {
+  id                   String   @id @default(dbgenerated("gen_random_uuid()"))
+  userId               String   @unique @map("user_id")
+  medicationReminders  Boolean? @default(true) @map("medication_reminders")
+  aiVetInsights        Boolean? @default(false) @map("ai_vet_insights")
+  appointmentReminders Boolean? @default(true) @map("appointment_reminders")
+  createdAt            DateTime? @default(now()) @map("created_at")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("user_notification_settings")
+}
+
+model Pet {
+  id             String    @id @default(dbgenerated("gen_random_uuid()"))
+  userId         String    @map("user_id")
+  name           String
+  species        String
+  breed          String?
+  sex            String?
+  dateOfBirth    DateTime? @map("date_of_birth") @db.Date
+  avatarUrl      String?   @map("avatar_url")
+  microchipped   Boolean?  @default(false)
+  spayedNeutered Boolean?  @default(false) @map("spayed_neutered")
+  status         String?   @default("active")
+  createdAt      DateTime? @default(now()) @map("created_at")
+
+  user         User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  weightLogs   WeightLog[]
+  appointments Appointment[]
+  vaccinations Vaccination[]
+  medications  Medication[]
+  medicationLogs MedicationLog[]
+  tasks        Task[]
+  aiVetConversations AiVetConversation[]
+
+  @@map("pets")
+}
+
+model WeightLog {
+  id         String   @id @default(dbgenerated("gen_random_uuid()"))
+  petId      String   @map("pet_id")
+  weightKg   Decimal  @map("weight_kg") @db.Decimal
+  source     String?
+  notes      String?
+  recordedAt DateTime @map("recorded_at")
+  createdAt  DateTime? @default(now()) @map("created_at")
+
+  pet Pet @relation(fields: [petId], references: [id], onDelete: Cascade)
+
+  @@map("weight_logs")
+}
+
+model Appointment {
+  id            String    @id @default(dbgenerated("gen_random_uuid()"))
+  petId         String    @map("pet_id")
+  userId        String    @map("user_id")
+  title         String
+  type          String?
+  location      String?
+  vetName       String?   @map("vet_name")
+  scheduledAt   DateTime  @map("scheduled_at")
+  status        String?   @default("upcoming")
+  googleEventId String?   @map("google_event_id")
+  notes         String?
+  createdAt     DateTime? @default(now()) @map("created_at")
+
+  pet          Pet           @relation(fields: [petId], references: [id], onDelete: Cascade)
+  user         User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  vaccinations Vaccination[]
+
+  @@map("appointments")
+}
+
+model Vaccination {
+  id             String    @id @default(dbgenerated("gen_random_uuid()"))
+  petId          String    @map("pet_id")
+  appointmentId  String?   @map("appointment_id")
+  name           String
+  type           String?
+  administeredBy String?   @map("administered_by")
+  clinic         String?
+  givenAt        DateTime  @map("given_at") @db.Date
+  nextDueAt      DateTime? @map("next_due_at") @db.Date
+  createdAt      DateTime? @default(now()) @map("created_at")
+
+  pet         Pet          @relation(fields: [petId], references: [id], onDelete: Cascade)
+  appointment Appointment? @relation(fields: [appointmentId], references: [id], onDelete: SetNull)
+
+  @@map("vaccinations")
+}
+
+model Medication {
+  id        String    @id @default(dbgenerated("gen_random_uuid()"))
+  petId     String    @map("pet_id")
+  name      String
+  form      String?
+  dosage    String?
+  frequency String?
+  times     String[]
+  startDate DateTime  @map("start_date") @db.Date
+  endDate   DateTime? @map("end_date") @db.Date
+  isActive  Boolean?  @default(true) @map("is_active")
+  notes     String?
+  createdAt DateTime? @default(now()) @map("created_at")
+
+  pet            Pet             @relation(fields: [petId], references: [id], onDelete: Cascade)
+  medicationLogs MedicationLog[]
+
+  @@map("medications")
+}
+
+model MedicationLog {
+  id           String    @id @default(dbgenerated("gen_random_uuid()"))
+  medicationId String    @map("medication_id")
+  petId        String    @map("pet_id")
+  scheduledAt  DateTime  @map("scheduled_at")
+  givenAt      DateTime? @map("given_at")
+  status       String    @default("pending")
+  createdAt    DateTime? @default(now()) @map("created_at")
+
+  medication Medication @relation(fields: [medicationId], references: [id], onDelete: Cascade)
+  pet        Pet        @relation(fields: [petId], references: [id], onDelete: Cascade)
+
+  @@map("medication_logs")
+}
+
+model Task {
+  id          String    @id @default(dbgenerated("gen_random_uuid()"))
+  petId       String    @map("pet_id")
+  userId      String    @map("user_id")
+  title       String
+  category    String?
+  frequency   String?
+  dueAt       DateTime? @map("due_at")
+  isCompleted Boolean?  @default(false) @map("is_completed")
+  completedAt DateTime? @map("completed_at")
+  createdAt   DateTime? @default(now()) @map("created_at")
+
+  pet  Pet  @relation(fields: [petId], references: [id], onDelete: Cascade)
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("tasks")
+}
+
+model AiVetConversation {
+  id        String    @id @default(dbgenerated("gen_random_uuid()"))
+  userId    String    @map("user_id")
+  petId     String?   @map("pet_id")
+  title     String?
+  createdAt DateTime? @default(now()) @map("created_at")
+
+  user     User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  pet      Pet?           @relation(fields: [petId], references: [id], onDelete: SetNull)
+  messages AiVetMessage[]
+
+  @@map("ai_vet_conversations")
+}
+
+model AiVetMessage {
+  id             String    @id @default(dbgenerated("gen_random_uuid()"))
+  conversationId String    @map("conversation_id")
+  role           String
+  content        String
+  createdAt      DateTime? @default(now()) @map("created_at")
+
+  conversation AiVetConversation @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+
+  @@map("ai_vet_messages")
+}

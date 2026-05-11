@@ -14,3 +14,4 @@ yarn-error.log*
 .env.*
 .env
 /dist
+/generated/prisma

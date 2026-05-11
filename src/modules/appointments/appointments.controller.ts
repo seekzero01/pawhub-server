@@ -16,10 +16,10 @@ import { CreateAppointmentDto } from './dto/create-appointment.dto';
 import { UpdateAppointmentDto } from './dto/update-appointment.dto';
 import { Appointment } from './types/appointments.types';
 import { CurrentUser } from '../../decorators/current-user.decorator';
-import { ClerkAuthGuard } from '../../core/auth/guard/clerk-auth.guard';
+import {AuthGuard} from "@thallesp/nestjs-better-auth";
 
 @Controller('pets/:petId/appointments')
-@UseGuards(ClerkAuthGuard)
+@UseGuards(AuthGuard)
 export class AppointmentsController {
   constructor(private readonly appointmentsService: AppointmentsService) {}
 

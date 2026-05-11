@@ -16,10 +16,10 @@ import { CreatePetDto } from './dto/create-pet.dto';
 import { UpdatePetDto } from './dto/update-pet.dto';
 import {Pet} from "./types/pets.types";
 import {CurrentUser} from "../../decorators/current-user.decorator";
-import {ClerkAuthGuard} from "../../core/auth/guard/clerk-auth.guard";
+import {AuthGuard} from "@thallesp/nestjs-better-auth";
 
 @Controller('pets')
-@UseGuards(ClerkAuthGuard)
+@UseGuards(AuthGuard)
 export class PetsController {
   constructor(private readonly petsService: PetsService) {}
 

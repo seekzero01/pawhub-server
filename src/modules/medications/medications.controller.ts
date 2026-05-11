@@ -6,19 +6,18 @@ import {
   Patch,
   Param,
   Delete,
-  UseGuards,
   ParseUUIDPipe,
   HttpCode,
-  HttpStatus
+  HttpStatus, UseGuards
 } from '@nestjs/common';
 import { MedicationsService } from './medications.service';
 import { CreateMedicationDto } from './dto/create-medication.dto';
 import { UpdateMedicationDto } from './dto/update-medication.dto';
-import {ClerkAuthGuard} from "../../core/auth/guard/clerk-auth.guard";
 import {CurrentUser} from "../../decorators/current-user.decorator";
+import {AuthGuard} from "@thallesp/nestjs-better-auth";
 
 @Controller('pets/:petId/medications')
-@UseGuards(ClerkAuthGuard)
+@UseGuards(AuthGuard)
 export class MedicationsController {
   constructor(private readonly medicationsService: MedicationsService) {}
 
