@@ -54,7 +54,17 @@ export const ModelName = {
   User: 'User',
   Session: 'Session',
   Account: 'Account',
-  Verification: 'Verification'
+  Verification: 'Verification',
+  UserNotificationSettings: 'UserNotificationSettings',
+  Pet: 'Pet',
+  WeightLog: 'WeightLog',
+  Appointment: 'Appointment',
+  Vaccination: 'Vaccination',
+  Medication: 'Medication',
+  MedicationLog: 'MedicationLog',
+  Task: 'Task',
+  AiVetConversation: 'AiVetConversation',
+  AiVetMessage: 'AiVetMessage'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -75,14 +85,14 @@ export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof
 
 export const UserScalarFieldEnum = {
   id: 'id',
+  name: 'name',
   email: 'email',
-  emailVerified: 'emailVerified',
-  firstName: 'firstName',
-  lastName: 'lastName',
   avatarUrl: 'avatarUrl',
   plan: 'plan',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  emailVerified: 'emailVerified',
+  image: 'image'
 } as const
 
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
@@ -131,6 +141,152 @@ export const VerificationScalarFieldEnum = {
 } as const
 
 export type VerificationScalarFieldEnum = (typeof VerificationScalarFieldEnum)[keyof typeof VerificationScalarFieldEnum]
+
+
+export const UserNotificationSettingsScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  medicationReminders: 'medicationReminders',
+  aiVetInsights: 'aiVetInsights',
+  appointmentReminders: 'appointmentReminders',
+  createdAt: 'createdAt'
+} as const
+
+export type UserNotificationSettingsScalarFieldEnum = (typeof UserNotificationSettingsScalarFieldEnum)[keyof typeof UserNotificationSettingsScalarFieldEnum]
+
+
+export const PetScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  name: 'name',
+  species: 'species',
+  breed: 'breed',
+  sex: 'sex',
+  dateOfBirth: 'dateOfBirth',
+  avatarUrl: 'avatarUrl',
+  microchipped: 'microchipped',
+  spayedNeutered: 'spayedNeutered',
+  status: 'status',
+  createdAt: 'createdAt'
+} as const
+
+export type PetScalarFieldEnum = (typeof PetScalarFieldEnum)[keyof typeof PetScalarFieldEnum]
+
+
+export const WeightLogScalarFieldEnum = {
+  id: 'id',
+  petId: 'petId',
+  weightKg: 'weightKg',
+  source: 'source',
+  notes: 'notes',
+  recordedAt: 'recordedAt',
+  createdAt: 'createdAt'
+} as const
+
+export type WeightLogScalarFieldEnum = (typeof WeightLogScalarFieldEnum)[keyof typeof WeightLogScalarFieldEnum]
+
+
+export const AppointmentScalarFieldEnum = {
+  id: 'id',
+  petId: 'petId',
+  userId: 'userId',
+  title: 'title',
+  type: 'type',
+  location: 'location',
+  vetName: 'vetName',
+  scheduledAt: 'scheduledAt',
+  status: 'status',
+  googleEventId: 'googleEventId',
+  notes: 'notes',
+  createdAt: 'createdAt'
+} as const
+
+export type AppointmentScalarFieldEnum = (typeof AppointmentScalarFieldEnum)[keyof typeof AppointmentScalarFieldEnum]
+
+
+export const VaccinationScalarFieldEnum = {
+  id: 'id',
+  petId: 'petId',
+  appointmentId: 'appointmentId',
+  name: 'name',
+  type: 'type',
+  administeredBy: 'administeredBy',
+  clinic: 'clinic',
+  givenAt: 'givenAt',
+  nextDueAt: 'nextDueAt',
+  createdAt: 'createdAt'
+} as const
+
+export type VaccinationScalarFieldEnum = (typeof VaccinationScalarFieldEnum)[keyof typeof VaccinationScalarFieldEnum]
+
+
+export const MedicationScalarFieldEnum = {
+  id: 'id',
+  petId: 'petId',
+  name: 'name',
+  form: 'form',
+  dosage: 'dosage',
+  frequency: 'frequency',
+  times: 'times',
+  startDate: 'startDate',
+  endDate: 'endDate',
+  isActive: 'isActive',
+  notes: 'notes',
+  createdAt: 'createdAt'
+} as const
+
+export type MedicationScalarFieldEnum = (typeof MedicationScalarFieldEnum)[keyof typeof MedicationScalarFieldEnum]
+
+
+export const MedicationLogScalarFieldEnum = {
+  id: 'id',
+  medicationId: 'medicationId',
+  petId: 'petId',
+  scheduledAt: 'scheduledAt',
+  givenAt: 'givenAt',
+  status: 'status',
+  createdAt: 'createdAt'
+} as const
+
+export type MedicationLogScalarFieldEnum = (typeof MedicationLogScalarFieldEnum)[keyof typeof MedicationLogScalarFieldEnum]
+
+
+export const TaskScalarFieldEnum = {
+  id: 'id',
+  petId: 'petId',
+  userId: 'userId',
+  title: 'title',
+  category: 'category',
+  frequency: 'frequency',
+  dueAt: 'dueAt',
+  isCompleted: 'isCompleted',
+  completedAt: 'completedAt',
+  createdAt: 'createdAt'
+} as const
+
+export type TaskScalarFieldEnum = (typeof TaskScalarFieldEnum)[keyof typeof TaskScalarFieldEnum]
+
+
+export const AiVetConversationScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  petId: 'petId',
+  title: 'title',
+  createdAt: 'createdAt'
+} as const
+
+export type AiVetConversationScalarFieldEnum = (typeof AiVetConversationScalarFieldEnum)[keyof typeof AiVetConversationScalarFieldEnum]
+
+
+export const AiVetMessageScalarFieldEnum = {
+  id: 'id',
+  conversationId: 'conversationId',
+  role: 'role',
+  content: 'content',
+  createdAt: 'createdAt'
+} as const
+
+export type AiVetMessageScalarFieldEnum = (typeof AiVetMessageScalarFieldEnum)[keyof typeof AiVetMessageScalarFieldEnum]
 
 
 export const SortOrder = {

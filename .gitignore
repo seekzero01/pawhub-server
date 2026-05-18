@@ -11,7 +11,6 @@ yarn-error.log*
 .vscode/*
 
 .idea/
-.env.*
-.env
+.env*
 /dist
 /generated/prisma

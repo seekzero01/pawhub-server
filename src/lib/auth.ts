@@ -1,18 +1,21 @@
 import { betterAuth } from "better-auth";
 import { prismaAdapter } from "better-auth/adapters/prisma";
-import { PrismaClient } from "../generated/client";
-import { PrismaPg } from "@prisma/adapter-pg";
+import "dotenv/config.js"
+import {emailOTP, haveIBeenPwned} from "better-auth/plugins";
+import prisma from "./prisma";
 
-const adapter = new PrismaPg({
-    connectionString: process.env.DATABASE_URL!,
-});
-
-const prisma = new PrismaClient({ adapter });
 export const auth = betterAuth({
     baseURL: process.env.BETTER_AUTH_URL,
     database: prismaAdapter(prisma, {
         provider: "postgresql",
     }),
-    emailAndPassword: { enabled: true },
-    trustedOrigins: ["http://localhost:3001"],
+    trustedOrigins: ["http://localhost:3000","http://localhost:3001"],
+    advanced: { disableOriginCheck: true },
+    emailAndPassword: { enabled: true, minPasswordLength: 12, autoSignIn: true, requireEmailVerification: false },
+    emailVerification: {
+        sendOnSignUp: false,
+    },
+    plugins: [
+        haveIBeenPwned()
+    ]
 });

@@ -59,3 +59,53 @@ export type Account = Prisma.AccountModel
  * 
  */
 export type Verification = Prisma.VerificationModel
+/**
+ * Model UserNotificationSettings
+ * 
+ */
+export type UserNotificationSettings = Prisma.UserNotificationSettingsModel
+/**
+ * Model Pet
+ * 
+ */
+export type Pet = Prisma.PetModel
+/**
+ * Model WeightLog
+ * 
+ */
+export type WeightLog = Prisma.WeightLogModel
+/**
+ * Model Appointment
+ * 
+ */
+export type Appointment = Prisma.AppointmentModel
+/**
+ * Model Vaccination
+ * 
+ */
+export type Vaccination = Prisma.VaccinationModel
+/**
+ * Model Medication
+ * 
+ */
+export type Medication = Prisma.MedicationModel
+/**
+ * Model MedicationLog
+ * 
+ */
+export type MedicationLog = Prisma.MedicationLogModel
+/**
+ * Model Task
+ * 
+ */
+export type Task = Prisma.TaskModel
+/**
+ * Model AiVetConversation
+ * 
+ */
+export type AiVetConversation = Prisma.AiVetConversationModel
+/**
+ * Model AiVetMessage
+ * 
+ */
+export type AiVetMessage = Prisma.AiVetMessageModel

@@ -1,5 +1,4 @@
 import { Module } from '@nestjs/common'
-// import { AuthModule } from './core/auth/auth.module'
 import { SupabaseModule } from './core/database/supabase/supabase.module'
 import {ConfigModule} from "@nestjs/config";
 import { PetsModule } from './modules/pets/pets.module';
@@ -15,7 +14,7 @@ import {auth} from "./lib/auth";
   imports: [
       ConfigModule.forRoot({
         isGlobal: true,
-        envFilePath: `.env`,
+        envFilePath: ".env",
         load: [supabaseConfig],
       }),
     AuthModule.forRoot({ auth }),

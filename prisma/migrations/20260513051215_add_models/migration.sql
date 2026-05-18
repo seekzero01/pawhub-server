@@ -1,6 +1,6 @@
 -- CreateTable
 CREATE TABLE "users" (
-    "id" TEXT NOT NULL,
+    "id" TEXT NOT NULL DEFAULT gen_random_uuid(),
     "email" TEXT NOT NULL,
     "email_verified" BOOLEAN NOT NULL DEFAULT false,
     "first_name" TEXT,
@@ -15,7 +15,7 @@ CREATE TABLE "users" (
 
 -- CreateTable
 CREATE TABLE "session" (
-    "id" TEXT NOT NULL,
+    "id" TEXT NOT NULL DEFAULT gen_random_uuid(),
     "expires_at" TIMESTAMP(3) NOT NULL,
     "token" TEXT NOT NULL,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -29,7 +29,7 @@ CREATE TABLE "session" (
 
 -- CreateTable
 CREATE TABLE "account" (
-    "id" TEXT NOT NULL,
+    "id" TEXT NOT NULL DEFAULT gen_random_uuid(),
     "account_id" TEXT NOT NULL,
     "provider_id" TEXT NOT NULL,
     "user_id" TEXT NOT NULL,
@@ -48,7 +48,7 @@ CREATE TABLE "account" (
 
 -- CreateTable
 CREATE TABLE "verification" (
-    "id" TEXT NOT NULL,
+    "id" TEXT NOT NULL DEFAULT gen_random_uuid(),
     "identifier" TEXT NOT NULL,
     "value" TEXT NOT NULL,
     "expires_at" TIMESTAMP(3) NOT NULL,
@@ -60,8 +60,8 @@ CREATE TABLE "verification" (
 
 -- CreateTable
 CREATE TABLE "user_notification_settings" (
-    "id" UUID NOT NULL DEFAULT gen_random_uuid(),
-    "user_id" UUID NOT NULL,
+    "id" TEXT NOT NULL DEFAULT gen_random_uuid(),
+    "user_id" TEXT NOT NULL,
     "medication_reminders" BOOLEAN DEFAULT true,
     "ai_vet_insights" BOOLEAN DEFAULT false,
     "appointment_reminders" BOOLEAN DEFAULT true,
@@ -72,8 +72,8 @@ CREATE TABLE "user_notification_settings" (
 
 -- CreateTable
 CREATE TABLE "pets" (
-    "id" UUID NOT NULL DEFAULT gen_random_uuid(),
-    "user_id" UUID NOT NULL,
+    "id" TEXT NOT NULL DEFAULT gen_random_uuid(),
+    "user_id" TEXT NOT NULL,
     "name" TEXT NOT NULL,
     "species" TEXT NOT NULL,
     "breed" TEXT,
@@ -90,8 +90,8 @@ CREATE TABLE "pets" (
 
 -- CreateTable
 CREATE TABLE "weight_logs" (
-    "id" UUID NOT NULL DEFAULT gen_random_uuid(),
-    "pet_id" UUID NOT NULL,
+    "id" TEXT NOT NULL DEFAULT gen_random_uuid(),
+    "pet_id" TEXT NOT NULL,
     "weight_kg" DECIMAL NOT NULL,
     "source" TEXT,
     "notes" TEXT,
@@ -103,9 +103,9 @@ CREATE TABLE "weight_logs" (
 
 -- CreateTable
 CREATE TABLE "appointments" (
-    "id" UUID NOT NULL DEFAULT gen_random_uuid(),
-    "pet_id" UUID NOT NULL,
-    "user_id" UUID NOT NULL,
+    "id" TEXT NOT NULL DEFAULT gen_random_uuid(),
+    "pet_id" TEXT NOT NULL,
+    "user_id" TEXT NOT NULL,
     "title" TEXT NOT NULL,
     "type" TEXT,
     "location" TEXT,
@@ -121,9 +121,9 @@ CREATE TABLE "appointments" (
 
 -- CreateTable
 CREATE TABLE "vaccinations" (
-    "id" UUID NOT NULL DEFAULT gen_random_uuid(),
-    "pet_id" UUID NOT NULL,
-    "appointment_id" UUID,
+    "id" TEXT NOT NULL DEFAULT gen_random_uuid(),
+    "pet_id" TEXT NOT NULL,
+    "appointment_id" TEXT,
     "name" TEXT NOT NULL,
     "type" TEXT,
     "administered_by" TEXT,
@@ -137,8 +137,8 @@ CREATE TABLE "vaccinations" (
 
 -- CreateTable
 CREATE TABLE "medications" (
-    "id" UUID NOT NULL DEFAULT gen_random_uuid(),
-    "pet_id" UUID NOT NULL,
+    "id" TEXT NOT NULL DEFAULT gen_random_uuid(),
+    "pet_id" TEXT NOT NULL,
     "name" TEXT NOT NULL,
     "form" TEXT,
     "dosage" TEXT,
@@ -155,9 +155,9 @@ CREATE TABLE "medications" (
 
 -- CreateTable
 CREATE TABLE "medication_logs" (
-    "id" UUID NOT NULL DEFAULT gen_random_uuid(),
-    "medication_id" UUID NOT NULL,
-    "pet_id" UUID NOT NULL,
+    "id" TEXT NOT NULL DEFAULT gen_random_uuid(),
+    "medication_id" TEXT NOT NULL,
+    "pet_id" TEXT NOT NULL,
     "scheduled_at" TIMESTAMP(3) NOT NULL,
     "given_at" TIMESTAMP(3),
     "status" TEXT NOT NULL DEFAULT 'pending',
@@ -168,9 +168,9 @@ CREATE TABLE "medication_logs" (
 
 -- CreateTable
 CREATE TABLE "tasks" (
-    "id" UUID NOT NULL DEFAULT gen_random_uuid(),
-    "pet_id" UUID NOT NULL,
-    "user_id" UUID NOT NULL,
+    "id" TEXT NOT NULL DEFAULT gen_random_uuid(),
+    "pet_id" TEXT NOT NULL,
+    "user_id" TEXT NOT NULL,
     "title" TEXT NOT NULL,
     "category" TEXT,
     "frequency" TEXT,
@@ -184,9 +184,9 @@ CREATE TABLE "tasks" (
 
 -- CreateTable
 CREATE TABLE "ai_vet_conversations" (
-    "id" UUID NOT NULL DEFAULT gen_random_uuid(),
-    "user_id" UUID NOT NULL,
-    "pet_id" UUID,
+    "id" TEXT NOT NULL DEFAULT gen_random_uuid(),
+    "user_id" TEXT NOT NULL,
+    "pet_id" TEXT,
     "title" TEXT,
     "created_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
 
@@ -195,8 +195,8 @@ CREATE TABLE "ai_vet_conversations" (
 
 -- CreateTable
 CREATE TABLE "ai_vet_messages" (
-    "id" UUID NOT NULL DEFAULT gen_random_uuid(),
-    "conversation_id" UUID NOT NULL,
+    "id" TEXT NOT NULL DEFAULT gen_random_uuid(),
+    "conversation_id" TEXT NOT NULL,
     "role" TEXT NOT NULL,
     "content" TEXT NOT NULL,
     "created_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,

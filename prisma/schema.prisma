@@ -1,3 +1,4 @@
+
 generator client {
   provider     = "prisma-client"
   output       = "../src/generated"
@@ -13,23 +14,24 @@ datasource db {
 // ─────────────────────────────────────────────
 
 model User {
-  id            String    @id @default(dbgenerated("gen_random_uuid()"))
-  email         String    @unique
-  emailVerified Boolean   @default(false) @map("email_verified")
-  firstName     String?   @map("first_name")
-  lastName      String?   @map("last_name")
-  avatarUrl     String?   @map("avatar_url")
-  plan          String    @default("free")
-  createdAt     DateTime  @default(now()) @map("created_at")
-  updatedAt     DateTime  @updatedAt @map("updated_at")
+  id        String   @id @default(dbgenerated("gen_random_uuid()"))
+  name      String
+  email     String   @unique
+  avatarUrl String?  @map("avatar_url")
+  plan      String   @default("free")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
 
-  sessions                  Session[]
-  accounts                  Account[]
-  pets                      Pet[]
-  appointments              Appointment[]
-  tasks                     Task[]
-  aiVetConversations        AiVetConversation[]
-  userNotificationSettings  UserNotificationSettings?
+  sessions                 Session[]
+  accounts                 Account[]
+  pets                     Pet[]
+  appointments             Appointment[]
+  tasks                    Task[]
+  aiVetConversations       AiVetConversation[]
+  userNotificationSettings UserNotificationSettings?
+
+  emailVerified Boolean @default(false)
+  image         String?
 
   @@map("users")
 }
@@ -86,11 +88,11 @@ model Verification {
 // ─────────────────────────────────────────────
 
 model UserNotificationSettings {
-  id                   String   @id @default(dbgenerated("gen_random_uuid()"))
-  userId               String   @unique @map("user_id")
-  medicationReminders  Boolean? @default(true) @map("medication_reminders")
-  aiVetInsights        Boolean? @default(false) @map("ai_vet_insights")
-  appointmentReminders Boolean? @default(true) @map("appointment_reminders")
+  id                   String    @id @default(dbgenerated("gen_random_uuid()"))
+  userId               String    @unique @map("user_id")
+  medicationReminders  Boolean?  @default(true) @map("medication_reminders")
+  aiVetInsights        Boolean?  @default(false) @map("ai_vet_insights")
+  appointmentReminders Boolean?  @default(true) @map("appointment_reminders")
   createdAt            DateTime? @default(now()) @map("created_at")
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
@@ -112,25 +114,25 @@ model Pet {
   status         String?   @default("active")
   createdAt      DateTime? @default(now()) @map("created_at")
 
-  user         User          @relation(fields: [userId], references: [id], onDelete: Cascade)
-  weightLogs   WeightLog[]
-  appointments Appointment[]
-  vaccinations Vaccination[]
-  medications  Medication[]
-  medicationLogs MedicationLog[]
-  tasks        Task[]
+  user               User                @relation(fields: [userId], references: [id], onDelete: Cascade)
+  weightLogs         WeightLog[]
+  appointments       Appointment[]
+  vaccinations       Vaccination[]
+  medications        Medication[]
+  medicationLogs     MedicationLog[]
+  tasks              Task[]
   aiVetConversations AiVetConversation[]
 
   @@map("pets")
 }
 
 model WeightLog {
-  id         String   @id @default(dbgenerated("gen_random_uuid()"))
-  petId      String   @map("pet_id")
-  weightKg   Decimal  @map("weight_kg") @db.Decimal
+  id         String    @id @default(dbgenerated("gen_random_uuid()"))
+  petId      String    @map("pet_id")
+  weightKg   Decimal   @map("weight_kg") @db.Decimal
   source     String?
   notes      String?
-  recordedAt DateTime @map("recorded_at")
+  recordedAt DateTime  @map("recorded_at")
   createdAt  DateTime? @default(now()) @map("created_at")
 
   pet Pet @relation(fields: [petId], references: [id], onDelete: Cascade)

@@ -26,76 +26,76 @@ export type AggregateUser = {
 
 export type UserMinAggregateOutputType = {
   id: string | null
+  name: string | null
   email: string | null
-  emailVerified: boolean | null
-  firstName: string | null
-  lastName: string | null
   avatarUrl: string | null
   plan: string | null
   createdAt: Date | null
   updatedAt: Date | null
+  emailVerified: boolean | null
+  image: string | null
 }
 
 export type UserMaxAggregateOutputType = {
   id: string | null
+  name: string | null
   email: string | null
-  emailVerified: boolean | null
-  firstName: string | null
-  lastName: string | null
   avatarUrl: string | null
   plan: string | null
   createdAt: Date | null
   updatedAt: Date | null
+  emailVerified: boolean | null
+  image: string | null
 }
 
 export type UserCountAggregateOutputType = {
   id: number
+  name: number
   email: number
-  emailVerified: number
-  firstName: number
-  lastName: number
   avatarUrl: number
   plan: number
   createdAt: number
   updatedAt: number
+  emailVerified: number
+  image: number
   _all: number
 }
 
 
 export type UserMinAggregateInputType = {
   id?: true
+  name?: true
   email?: true
-  emailVerified?: true
-  firstName?: true
-  lastName?: true
   avatarUrl?: true
   plan?: true
   createdAt?: true
   updatedAt?: true
+  emailVerified?: true
+  image?: true
 }
 
 export type UserMaxAggregateInputType = {
   id?: true
+  name?: true
   email?: true
-  emailVerified?: true
-  firstName?: true
-  lastName?: true
   avatarUrl?: true
   plan?: true
   createdAt?: true
   updatedAt?: true
+  emailVerified?: true
+  image?: true
 }
 
 export type UserCountAggregateInputType = {
   id?: true
+  name?: true
   email?: true
-  emailVerified?: true
-  firstName?: true
-  lastName?: true
   avatarUrl?: true
   plan?: true
   createdAt?: true
   updatedAt?: true
+  emailVerified?: true
+  image?: true
   _all?: true
 }
 
@@ -173,14 +173,14 @@ export type UserGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalArg
 
 export type UserGroupByOutputType = {
   id: string
+  name: string
   email: string
-  emailVerified: boolean
-  firstName: string | null
-  lastName: string | null
   avatarUrl: string | null
   plan: string
   createdAt: Date
   updatedAt: Date
+  emailVerified: boolean
+  image: string | null
   _count: UserCountAggregateOutputType | null
   _min: UserMinAggregateOutputType | null
   _max: UserMaxAggregateOutputType | null
@@ -206,30 +206,40 @@ export type UserWhereInput = {
   OR?: Prisma.UserWhereInput[]
   NOT?: Prisma.UserWhereInput | Prisma.UserWhereInput[]
   id?: Prisma.StringFilter<"User"> | string
+  name?: Prisma.StringFilter<"User"> | string
   email?: Prisma.StringFilter<"User"> | string
-  emailVerified?: Prisma.BoolFilter<"User"> | boolean
-  firstName?: Prisma.StringNullableFilter<"User"> | string | null
-  lastName?: Prisma.StringNullableFilter<"User"> | string | null
   avatarUrl?: Prisma.StringNullableFilter<"User"> | string | null
   plan?: Prisma.StringFilter<"User"> | string
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
+  emailVerified?: Prisma.BoolFilter<"User"> | boolean
+  image?: Prisma.StringNullableFilter<"User"> | string | null
   sessions?: Prisma.SessionListRelationFilter
   accounts?: Prisma.AccountListRelationFilter
+  pets?: Prisma.PetListRelationFilter
+  appointments?: Prisma.AppointmentListRelationFilter
+  tasks?: Prisma.TaskListRelationFilter
+  aiVetConversations?: Prisma.AiVetConversationListRelationFilter
+  userNotificationSettings?: Prisma.XOR<Prisma.UserNotificationSettingsNullableScalarRelationFilter, Prisma.UserNotificationSettingsWhereInput> | null
 }
 
 export type UserOrderByWithRelationInput = {
   id?: Prisma.SortOrder
+  name?: Prisma.SortOrder
   email?: Prisma.SortOrder
-  emailVerified?: Prisma.SortOrder
-  firstName?: Prisma.SortOrderInput | Prisma.SortOrder
-  lastName?: Prisma.SortOrderInput | Prisma.SortOrder
   avatarUrl?: Prisma.SortOrderInput | Prisma.SortOrder
   plan?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  emailVerified?: Prisma.SortOrder
+  image?: Prisma.SortOrderInput | Prisma.SortOrder
   sessions?: Prisma.SessionOrderByRelationAggregateInput
   accounts?: Prisma.AccountOrderByRelationAggregateInput
+  pets?: Prisma.PetOrderByRelationAggregateInput
+  appointments?: Prisma.AppointmentOrderByRelationAggregateInput
+  tasks?: Prisma.TaskOrderByRelationAggregateInput
+  aiVetConversations?: Prisma.AiVetConversationOrderByRelationAggregateInput
+  userNotificationSettings?: Prisma.UserNotificationSettingsOrderByWithRelationInput
 }
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -238,27 +248,32 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.UserWhereInput | Prisma.UserWhereInput[]
   OR?: Prisma.UserWhereInput[]
   NOT?: Prisma.UserWhereInput | Prisma.UserWhereInput[]
-  emailVerified?: Prisma.BoolFilter<"User"> | boolean
-  firstName?: Prisma.StringNullableFilter<"User"> | string | null
-  lastName?: Prisma.StringNullableFilter<"User"> | string | null
+  name?: Prisma.StringFilter<"User"> | string
   avatarUrl?: Prisma.StringNullableFilter<"User"> | string | null
   plan?: Prisma.StringFilter<"User"> | string
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
+  emailVerified?: Prisma.BoolFilter<"User"> | boolean
+  image?: Prisma.StringNullableFilter<"User"> | string | null
   sessions?: Prisma.SessionListRelationFilter
   accounts?: Prisma.AccountListRelationFilter
+  pets?: Prisma.PetListRelationFilter
+  appointments?: Prisma.AppointmentListRelationFilter
+  tasks?: Prisma.TaskListRelationFilter
+  aiVetConversations?: Prisma.AiVetConversationListRelationFilter
+  userNotificationSettings?: Prisma.XOR<Prisma.UserNotificationSettingsNullableScalarRelationFilter, Prisma.UserNotificationSettingsWhereInput> | null
 }, "id" | "email">
 
 export type UserOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
+  name?: Prisma.SortOrder
   email?: Prisma.SortOrder
-  emailVerified?: Prisma.SortOrder
-  firstName?: Prisma.SortOrderInput | Prisma.SortOrder
-  lastName?: Prisma.SortOrderInput | Prisma.SortOrder
   avatarUrl?: Prisma.SortOrderInput | Prisma.SortOrder
   plan?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  emailVerified?: Prisma.SortOrder
+  image?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.UserCountOrderByAggregateInput
   _max?: Prisma.UserMaxOrderByAggregateInput
   _min?: Prisma.UserMinOrderByAggregateInput
@@ -269,142 +284,162 @@ export type UserScalarWhereWithAggregatesInput = {
   OR?: Prisma.UserScalarWhereWithAggregatesInput[]
   NOT?: Prisma.UserScalarWhereWithAggregatesInput | Prisma.UserScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"User"> | string
+  name?: Prisma.StringWithAggregatesFilter<"User"> | string
   email?: Prisma.StringWithAggregatesFilter<"User"> | string
-  emailVerified?: Prisma.BoolWithAggregatesFilter<"User"> | boolean
-  firstName?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
-  lastName?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
   avatarUrl?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
   plan?: Prisma.StringWithAggregatesFilter<"User"> | string
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"User"> | Date | string
+  emailVerified?: Prisma.BoolWithAggregatesFilter<"User"> | boolean
+  image?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
 }
 
 export type UserCreateInput = {
-  id: string
+  id?: string
+  name: string
   email: string
-  emailVerified?: boolean
-  firstName?: string | null
-  lastName?: string | null
   avatarUrl?: string | null
   plan?: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  emailVerified?: boolean
+  image?: string | null
   sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
+  pets?: Prisma.PetCreateNestedManyWithoutUserInput
+  appointments?: Prisma.AppointmentCreateNestedManyWithoutUserInput
+  tasks?: Prisma.TaskCreateNestedManyWithoutUserInput
+  aiVetConversations?: Prisma.AiVetConversationCreateNestedManyWithoutUserInput
+  userNotificationSettings?: Prisma.UserNotificationSettingsCreateNestedOneWithoutUserInput
 }
 
 export type UserUncheckedCreateInput = {
-  id: string
+  id?: string
+  name: string
   email: string
-  emailVerified?: boolean
-  firstName?: string | null
-  lastName?: string | null
   avatarUrl?: string | null
   plan?: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  emailVerified?: boolean
+  image?: string | null
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
+  pets?: Prisma.PetUncheckedCreateNestedManyWithoutUserInput
+  appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutUserInput
+  tasks?: Prisma.TaskUncheckedCreateNestedManyWithoutUserInput
+  aiVetConversations?: Prisma.AiVetConversationUncheckedCreateNestedManyWithoutUserInput
+  userNotificationSettings?: Prisma.UserNotificationSettingsUncheckedCreateNestedOneWithoutUserInput
 }
 
 export type UserUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
-  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   plan?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
+  pets?: Prisma.PetUpdateManyWithoutUserNestedInput
+  appointments?: Prisma.AppointmentUpdateManyWithoutUserNestedInput
+  tasks?: Prisma.TaskUpdateManyWithoutUserNestedInput
+  aiVetConversations?: Prisma.AiVetConversationUpdateManyWithoutUserNestedInput
+  userNotificationSettings?: Prisma.UserNotificationSettingsUpdateOneWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
-  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   plan?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
+  pets?: Prisma.PetUncheckedUpdateManyWithoutUserNestedInput
+  appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutUserNestedInput
+  tasks?: Prisma.TaskUncheckedUpdateManyWithoutUserNestedInput
+  aiVetConversations?: Prisma.AiVetConversationUncheckedUpdateManyWithoutUserNestedInput
+  userNotificationSettings?: Prisma.UserNotificationSettingsUncheckedUpdateOneWithoutUserNestedInput
 }
 
 export type UserCreateManyInput = {
-  id: string
+  id?: string
+  name: string
   email: string
-  emailVerified?: boolean
-  firstName?: string | null
-  lastName?: string | null
   avatarUrl?: string | null
   plan?: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  emailVerified?: boolean
+  image?: string | null
 }
 
 export type UserUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
-  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   plan?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type UserUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
-  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   plan?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type UserCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  name?: Prisma.SortOrder
   email?: Prisma.SortOrder
-  emailVerified?: Prisma.SortOrder
-  firstName?: Prisma.SortOrder
-  lastName?: Prisma.SortOrder
   avatarUrl?: Prisma.SortOrder
   plan?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  emailVerified?: Prisma.SortOrder
+  image?: Prisma.SortOrder
 }
 
 export type UserMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  name?: Prisma.SortOrder
   email?: Prisma.SortOrder
-  emailVerified?: Prisma.SortOrder
-  firstName?: Prisma.SortOrder
-  lastName?: Prisma.SortOrder
   avatarUrl?: Prisma.SortOrder
   plan?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  emailVerified?: Prisma.SortOrder
+  image?: Prisma.SortOrder
 }
 
 export type UserMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  name?: Prisma.SortOrder
   email?: Prisma.SortOrder
-  emailVerified?: Prisma.SortOrder
-  firstName?: Prisma.SortOrder
-  lastName?: Prisma.SortOrder
   avatarUrl?: Prisma.SortOrder
   plan?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  emailVerified?: Prisma.SortOrder
+  image?: Prisma.SortOrder
 }
 
 export type UserScalarRelationFilter = {
@@ -416,16 +451,16 @@ export type StringFieldUpdateOperationsInput = {
   set?: string
 }
 
-export type BoolFieldUpdateOperationsInput = {
-  set?: boolean
-}
-
 export type NullableStringFieldUpdateOperationsInput = {
   set?: string | null
 }
 
 export type DateTimeFieldUpdateOperationsInput = {
   set?: Date | string
+}
+
+export type BoolFieldUpdateOperationsInput = {
+  set?: boolean
 }
 
 export type UserCreateNestedOneWithoutSessionsInput = {
@@ -456,30 +491,110 @@ export type UserUpdateOneRequiredWithoutAccountsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutAccountsInput, Prisma.UserUpdateWithoutAccountsInput>, Prisma.UserUncheckedUpdateWithoutAccountsInput>
 }
 
+export type UserCreateNestedOneWithoutUserNotificationSettingsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutUserNotificationSettingsInput, Prisma.UserUncheckedCreateWithoutUserNotificationSettingsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutUserNotificationSettingsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutUserNotificationSettingsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutUserNotificationSettingsInput, Prisma.UserUncheckedCreateWithoutUserNotificationSettingsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutUserNotificationSettingsInput
+  upsert?: Prisma.UserUpsertWithoutUserNotificationSettingsInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutUserNotificationSettingsInput, Prisma.UserUpdateWithoutUserNotificationSettingsInput>, Prisma.UserUncheckedUpdateWithoutUserNotificationSettingsInput>
+}
+
+export type UserCreateNestedOneWithoutPetsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutPetsInput, Prisma.UserUncheckedCreateWithoutPetsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutPetsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutPetsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutPetsInput, Prisma.UserUncheckedCreateWithoutPetsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutPetsInput
+  upsert?: Prisma.UserUpsertWithoutPetsInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutPetsInput, Prisma.UserUpdateWithoutPetsInput>, Prisma.UserUncheckedUpdateWithoutPetsInput>
+}
+
+export type UserCreateNestedOneWithoutAppointmentsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutAppointmentsInput, Prisma.UserUncheckedCreateWithoutAppointmentsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutAppointmentsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutAppointmentsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutAppointmentsInput, Prisma.UserUncheckedCreateWithoutAppointmentsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutAppointmentsInput
+  upsert?: Prisma.UserUpsertWithoutAppointmentsInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutAppointmentsInput, Prisma.UserUpdateWithoutAppointmentsInput>, Prisma.UserUncheckedUpdateWithoutAppointmentsInput>
+}
+
+export type UserCreateNestedOneWithoutTasksInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutTasksInput, Prisma.UserUncheckedCreateWithoutTasksInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutTasksInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutTasksNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutTasksInput, Prisma.UserUncheckedCreateWithoutTasksInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutTasksInput
+  upsert?: Prisma.UserUpsertWithoutTasksInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutTasksInput, Prisma.UserUpdateWithoutTasksInput>, Prisma.UserUncheckedUpdateWithoutTasksInput>
+}
+
+export type UserCreateNestedOneWithoutAiVetConversationsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutAiVetConversationsInput, Prisma.UserUncheckedCreateWithoutAiVetConversationsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutAiVetConversationsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutAiVetConversationsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutAiVetConversationsInput, Prisma.UserUncheckedCreateWithoutAiVetConversationsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutAiVetConversationsInput
+  upsert?: Prisma.UserUpsertWithoutAiVetConversationsInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutAiVetConversationsInput, Prisma.UserUpdateWithoutAiVetConversationsInput>, Prisma.UserUncheckedUpdateWithoutAiVetConversationsInput>
+}
+
 export type UserCreateWithoutSessionsInput = {
-  id: string
+  id?: string
+  name: string
   email: string
-  emailVerified?: boolean
-  firstName?: string | null
-  lastName?: string | null
   avatarUrl?: string | null
   plan?: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  emailVerified?: boolean
+  image?: string | null
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
+  pets?: Prisma.PetCreateNestedManyWithoutUserInput
+  appointments?: Prisma.AppointmentCreateNestedManyWithoutUserInput
+  tasks?: Prisma.TaskCreateNestedManyWithoutUserInput
+  aiVetConversations?: Prisma.AiVetConversationCreateNestedManyWithoutUserInput
+  userNotificationSettings?: Prisma.UserNotificationSettingsCreateNestedOneWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutSessionsInput = {
-  id: string
+  id?: string
+  name: string
   email: string
-  emailVerified?: boolean
-  firstName?: string | null
-  lastName?: string | null
   avatarUrl?: string | null
   plan?: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  emailVerified?: boolean
+  image?: string | null
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
+  pets?: Prisma.PetUncheckedCreateNestedManyWithoutUserInput
+  appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutUserInput
+  tasks?: Prisma.TaskUncheckedCreateNestedManyWithoutUserInput
+  aiVetConversations?: Prisma.AiVetConversationUncheckedCreateNestedManyWithoutUserInput
+  userNotificationSettings?: Prisma.UserNotificationSettingsUncheckedCreateNestedOneWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutSessionsInput = {
@@ -500,54 +615,74 @@ export type UserUpdateToOneWithWhereWithoutSessionsInput = {
 
 export type UserUpdateWithoutSessionsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
-  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   plan?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
+  pets?: Prisma.PetUpdateManyWithoutUserNestedInput
+  appointments?: Prisma.AppointmentUpdateManyWithoutUserNestedInput
+  tasks?: Prisma.TaskUpdateManyWithoutUserNestedInput
+  aiVetConversations?: Prisma.AiVetConversationUpdateManyWithoutUserNestedInput
+  userNotificationSettings?: Prisma.UserNotificationSettingsUpdateOneWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutSessionsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
-  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   plan?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
+  pets?: Prisma.PetUncheckedUpdateManyWithoutUserNestedInput
+  appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutUserNestedInput
+  tasks?: Prisma.TaskUncheckedUpdateManyWithoutUserNestedInput
+  aiVetConversations?: Prisma.AiVetConversationUncheckedUpdateManyWithoutUserNestedInput
+  userNotificationSettings?: Prisma.UserNotificationSettingsUncheckedUpdateOneWithoutUserNestedInput
 }
 
 export type UserCreateWithoutAccountsInput = {
-  id: string
+  id?: string
+  name: string
   email: string
-  emailVerified?: boolean
-  firstName?: string | null
-  lastName?: string | null
   avatarUrl?: string | null
   plan?: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  emailVerified?: boolean
+  image?: string | null
   sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  pets?: Prisma.PetCreateNestedManyWithoutUserInput
+  appointments?: Prisma.AppointmentCreateNestedManyWithoutUserInput
+  tasks?: Prisma.TaskCreateNestedManyWithoutUserInput
+  aiVetConversations?: Prisma.AiVetConversationCreateNestedManyWithoutUserInput
+  userNotificationSettings?: Prisma.UserNotificationSettingsCreateNestedOneWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutAccountsInput = {
-  id: string
+  id?: string
+  name: string
   email: string
-  emailVerified?: boolean
-  firstName?: string | null
-  lastName?: string | null
   avatarUrl?: string | null
   plan?: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  emailVerified?: boolean
+  image?: string | null
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  pets?: Prisma.PetUncheckedCreateNestedManyWithoutUserInput
+  appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutUserInput
+  tasks?: Prisma.TaskUncheckedCreateNestedManyWithoutUserInput
+  aiVetConversations?: Prisma.AiVetConversationUncheckedCreateNestedManyWithoutUserInput
+  userNotificationSettings?: Prisma.UserNotificationSettingsUncheckedCreateNestedOneWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutAccountsInput = {
@@ -568,28 +703,478 @@ export type UserUpdateToOneWithWhereWithoutAccountsInput = {
 
 export type UserUpdateWithoutAccountsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
-  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   plan?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  pets?: Prisma.PetUpdateManyWithoutUserNestedInput
+  appointments?: Prisma.AppointmentUpdateManyWithoutUserNestedInput
+  tasks?: Prisma.TaskUpdateManyWithoutUserNestedInput
+  aiVetConversations?: Prisma.AiVetConversationUpdateManyWithoutUserNestedInput
+  userNotificationSettings?: Prisma.UserNotificationSettingsUpdateOneWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAccountsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
-  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   plan?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  pets?: Prisma.PetUncheckedUpdateManyWithoutUserNestedInput
+  appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutUserNestedInput
+  tasks?: Prisma.TaskUncheckedUpdateManyWithoutUserNestedInput
+  aiVetConversations?: Prisma.AiVetConversationUncheckedUpdateManyWithoutUserNestedInput
+  userNotificationSettings?: Prisma.UserNotificationSettingsUncheckedUpdateOneWithoutUserNestedInput
+}
+
+export type UserCreateWithoutUserNotificationSettingsInput = {
+  id?: string
+  name: string
+  email: string
+  avatarUrl?: string | null
+  plan?: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  emailVerified?: boolean
+  image?: string | null
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
+  pets?: Prisma.PetCreateNestedManyWithoutUserInput
+  appointments?: Prisma.AppointmentCreateNestedManyWithoutUserInput
+  tasks?: Prisma.TaskCreateNestedManyWithoutUserInput
+  aiVetConversations?: Prisma.AiVetConversationCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutUserNotificationSettingsInput = {
+  id?: string
+  name: string
+  email: string
+  avatarUrl?: string | null
+  plan?: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  emailVerified?: boolean
+  image?: string | null
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
+  pets?: Prisma.PetUncheckedCreateNestedManyWithoutUserInput
+  appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutUserInput
+  tasks?: Prisma.TaskUncheckedCreateNestedManyWithoutUserInput
+  aiVetConversations?: Prisma.AiVetConversationUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutUserNotificationSettingsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutUserNotificationSettingsInput, Prisma.UserUncheckedCreateWithoutUserNotificationSettingsInput>
+}
+
+export type UserUpsertWithoutUserNotificationSettingsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutUserNotificationSettingsInput, Prisma.UserUncheckedUpdateWithoutUserNotificationSettingsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutUserNotificationSettingsInput, Prisma.UserUncheckedCreateWithoutUserNotificationSettingsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutUserNotificationSettingsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutUserNotificationSettingsInput, Prisma.UserUncheckedUpdateWithoutUserNotificationSettingsInput>
+}
+
+export type UserUpdateWithoutUserNotificationSettingsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  plan?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
+  pets?: Prisma.PetUpdateManyWithoutUserNestedInput
+  appointments?: Prisma.AppointmentUpdateManyWithoutUserNestedInput
+  tasks?: Prisma.TaskUpdateManyWithoutUserNestedInput
+  aiVetConversations?: Prisma.AiVetConversationUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutUserNotificationSettingsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  plan?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
+  pets?: Prisma.PetUncheckedUpdateManyWithoutUserNestedInput
+  appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutUserNestedInput
+  tasks?: Prisma.TaskUncheckedUpdateManyWithoutUserNestedInput
+  aiVetConversations?: Prisma.AiVetConversationUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutPetsInput = {
+  id?: string
+  name: string
+  email: string
+  avatarUrl?: string | null
+  plan?: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  emailVerified?: boolean
+  image?: string | null
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
+  appointments?: Prisma.AppointmentCreateNestedManyWithoutUserInput
+  tasks?: Prisma.TaskCreateNestedManyWithoutUserInput
+  aiVetConversations?: Prisma.AiVetConversationCreateNestedManyWithoutUserInput
+  userNotificationSettings?: Prisma.UserNotificationSettingsCreateNestedOneWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutPetsInput = {
+  id?: string
+  name: string
+  email: string
+  avatarUrl?: string | null
+  plan?: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  emailVerified?: boolean
+  image?: string | null
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
+  appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutUserInput
+  tasks?: Prisma.TaskUncheckedCreateNestedManyWithoutUserInput
+  aiVetConversations?: Prisma.AiVetConversationUncheckedCreateNestedManyWithoutUserInput
+  userNotificationSettings?: Prisma.UserNotificationSettingsUncheckedCreateNestedOneWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutPetsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutPetsInput, Prisma.UserUncheckedCreateWithoutPetsInput>
+}
+
+export type UserUpsertWithoutPetsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutPetsInput, Prisma.UserUncheckedUpdateWithoutPetsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutPetsInput, Prisma.UserUncheckedCreateWithoutPetsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutPetsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutPetsInput, Prisma.UserUncheckedUpdateWithoutPetsInput>
+}
+
+export type UserUpdateWithoutPetsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  plan?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
+  appointments?: Prisma.AppointmentUpdateManyWithoutUserNestedInput
+  tasks?: Prisma.TaskUpdateManyWithoutUserNestedInput
+  aiVetConversations?: Prisma.AiVetConversationUpdateManyWithoutUserNestedInput
+  userNotificationSettings?: Prisma.UserNotificationSettingsUpdateOneWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutPetsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  plan?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
+  appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutUserNestedInput
+  tasks?: Prisma.TaskUncheckedUpdateManyWithoutUserNestedInput
+  aiVetConversations?: Prisma.AiVetConversationUncheckedUpdateManyWithoutUserNestedInput
+  userNotificationSettings?: Prisma.UserNotificationSettingsUncheckedUpdateOneWithoutUserNestedInput
+}
+
+export type UserCreateWithoutAppointmentsInput = {
+  id?: string
+  name: string
+  email: string
+  avatarUrl?: string | null
+  plan?: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  emailVerified?: boolean
+  image?: string | null
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
+  pets?: Prisma.PetCreateNestedManyWithoutUserInput
+  tasks?: Prisma.TaskCreateNestedManyWithoutUserInput
+  aiVetConversations?: Prisma.AiVetConversationCreateNestedManyWithoutUserInput
+  userNotificationSettings?: Prisma.UserNotificationSettingsCreateNestedOneWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutAppointmentsInput = {
+  id?: string
+  name: string
+  email: string
+  avatarUrl?: string | null
+  plan?: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  emailVerified?: boolean
+  image?: string | null
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
+  pets?: Prisma.PetUncheckedCreateNestedManyWithoutUserInput
+  tasks?: Prisma.TaskUncheckedCreateNestedManyWithoutUserInput
+  aiVetConversations?: Prisma.AiVetConversationUncheckedCreateNestedManyWithoutUserInput
+  userNotificationSettings?: Prisma.UserNotificationSettingsUncheckedCreateNestedOneWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutAppointmentsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutAppointmentsInput, Prisma.UserUncheckedCreateWithoutAppointmentsInput>
+}
+
+export type UserUpsertWithoutAppointmentsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutAppointmentsInput, Prisma.UserUncheckedUpdateWithoutAppointmentsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutAppointmentsInput, Prisma.UserUncheckedCreateWithoutAppointmentsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutAppointmentsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutAppointmentsInput, Prisma.UserUncheckedUpdateWithoutAppointmentsInput>
+}
+
+export type UserUpdateWithoutAppointmentsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  plan?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
+  pets?: Prisma.PetUpdateManyWithoutUserNestedInput
+  tasks?: Prisma.TaskUpdateManyWithoutUserNestedInput
+  aiVetConversations?: Prisma.AiVetConversationUpdateManyWithoutUserNestedInput
+  userNotificationSettings?: Prisma.UserNotificationSettingsUpdateOneWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutAppointmentsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  plan?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
+  pets?: Prisma.PetUncheckedUpdateManyWithoutUserNestedInput
+  tasks?: Prisma.TaskUncheckedUpdateManyWithoutUserNestedInput
+  aiVetConversations?: Prisma.AiVetConversationUncheckedUpdateManyWithoutUserNestedInput
+  userNotificationSettings?: Prisma.UserNotificationSettingsUncheckedUpdateOneWithoutUserNestedInput
+}
+
+export type UserCreateWithoutTasksInput = {
+  id?: string
+  name: string
+  email: string
+  avatarUrl?: string | null
+  plan?: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  emailVerified?: boolean
+  image?: string | null
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
+  pets?: Prisma.PetCreateNestedManyWithoutUserInput
+  appointments?: Prisma.AppointmentCreateNestedManyWithoutUserInput
+  aiVetConversations?: Prisma.AiVetConversationCreateNestedManyWithoutUserInput
+  userNotificationSettings?: Prisma.UserNotificationSettingsCreateNestedOneWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutTasksInput = {
+  id?: string
+  name: string
+  email: string
+  avatarUrl?: string | null
+  plan?: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  emailVerified?: boolean
+  image?: string | null
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
+  pets?: Prisma.PetUncheckedCreateNestedManyWithoutUserInput
+  appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutUserInput
+  aiVetConversations?: Prisma.AiVetConversationUncheckedCreateNestedManyWithoutUserInput
+  userNotificationSettings?: Prisma.UserNotificationSettingsUncheckedCreateNestedOneWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutTasksInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutTasksInput, Prisma.UserUncheckedCreateWithoutTasksInput>
+}
+
+export type UserUpsertWithoutTasksInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutTasksInput, Prisma.UserUncheckedUpdateWithoutTasksInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutTasksInput, Prisma.UserUncheckedCreateWithoutTasksInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutTasksInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutTasksInput, Prisma.UserUncheckedUpdateWithoutTasksInput>
+}
+
+export type UserUpdateWithoutTasksInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  plan?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
+  pets?: Prisma.PetUpdateManyWithoutUserNestedInput
+  appointments?: Prisma.AppointmentUpdateManyWithoutUserNestedInput
+  aiVetConversations?: Prisma.AiVetConversationUpdateManyWithoutUserNestedInput
+  userNotificationSettings?: Prisma.UserNotificationSettingsUpdateOneWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutTasksInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  plan?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
+  pets?: Prisma.PetUncheckedUpdateManyWithoutUserNestedInput
+  appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutUserNestedInput
+  aiVetConversations?: Prisma.AiVetConversationUncheckedUpdateManyWithoutUserNestedInput
+  userNotificationSettings?: Prisma.UserNotificationSettingsUncheckedUpdateOneWithoutUserNestedInput
+}
+
+export type UserCreateWithoutAiVetConversationsInput = {
+  id?: string
+  name: string
+  email: string
+  avatarUrl?: string | null
+  plan?: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  emailVerified?: boolean
+  image?: string | null
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
+  pets?: Prisma.PetCreateNestedManyWithoutUserInput
+  appointments?: Prisma.AppointmentCreateNestedManyWithoutUserInput
+  tasks?: Prisma.TaskCreateNestedManyWithoutUserInput
+  userNotificationSettings?: Prisma.UserNotificationSettingsCreateNestedOneWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutAiVetConversationsInput = {
+  id?: string
+  name: string
+  email: string
+  avatarUrl?: string | null
+  plan?: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  emailVerified?: boolean
+  image?: string | null
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
+  pets?: Prisma.PetUncheckedCreateNestedManyWithoutUserInput
+  appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutUserInput
+  tasks?: Prisma.TaskUncheckedCreateNestedManyWithoutUserInput
+  userNotificationSettings?: Prisma.UserNotificationSettingsUncheckedCreateNestedOneWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutAiVetConversationsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutAiVetConversationsInput, Prisma.UserUncheckedCreateWithoutAiVetConversationsInput>
+}
+
+export type UserUpsertWithoutAiVetConversationsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutAiVetConversationsInput, Prisma.UserUncheckedUpdateWithoutAiVetConversationsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutAiVetConversationsInput, Prisma.UserUncheckedCreateWithoutAiVetConversationsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutAiVetConversationsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutAiVetConversationsInput, Prisma.UserUncheckedUpdateWithoutAiVetConversationsInput>
+}
+
+export type UserUpdateWithoutAiVetConversationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  plan?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
+  pets?: Prisma.PetUpdateManyWithoutUserNestedInput
+  appointments?: Prisma.AppointmentUpdateManyWithoutUserNestedInput
+  tasks?: Prisma.TaskUpdateManyWithoutUserNestedInput
+  userNotificationSettings?: Prisma.UserNotificationSettingsUpdateOneWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutAiVetConversationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  plan?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
+  pets?: Prisma.PetUncheckedUpdateManyWithoutUserNestedInput
+  appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutUserNestedInput
+  tasks?: Prisma.TaskUncheckedUpdateManyWithoutUserNestedInput
+  userNotificationSettings?: Prisma.UserNotificationSettingsUncheckedUpdateOneWithoutUserNestedInput
 }
 
 
@@ -600,11 +1185,19 @@ export type UserUncheckedUpdateWithoutAccountsInput = {
 export type UserCountOutputType = {
   sessions: number
   accounts: number
+  pets: number
+  appointments: number
+  tasks: number
+  aiVetConversations: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   sessions?: boolean | UserCountOutputTypeCountSessionsArgs
   accounts?: boolean | UserCountOutputTypeCountAccountsArgs
+  pets?: boolean | UserCountOutputTypeCountPetsArgs
+  appointments?: boolean | UserCountOutputTypeCountAppointmentsArgs
+  tasks?: boolean | UserCountOutputTypeCountTasksArgs
+  aiVetConversations?: boolean | UserCountOutputTypeCountAiVetConversationsArgs
 }
 
 /**
@@ -631,62 +1224,100 @@ export type UserCountOutputTypeCountAccountsArgs<ExtArgs extends runtime.Types.E
   where?: Prisma.AccountWhereInput
 }
 
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountPetsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.PetWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountAppointmentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.AppointmentWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountTasksArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.TaskWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountAiVetConversationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.AiVetConversationWhereInput
+}
+
 
 export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
+  name?: boolean
   email?: boolean
-  emailVerified?: boolean
-  firstName?: boolean
-  lastName?: boolean
   avatarUrl?: boolean
   plan?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  emailVerified?: boolean
+  image?: boolean
   sessions?: boolean | Prisma.User$sessionsArgs<ExtArgs>
   accounts?: boolean | Prisma.User$accountsArgs<ExtArgs>
+  pets?: boolean | Prisma.User$petsArgs<ExtArgs>
+  appointments?: boolean | Prisma.User$appointmentsArgs<ExtArgs>
+  tasks?: boolean | Prisma.User$tasksArgs<ExtArgs>
+  aiVetConversations?: boolean | Prisma.User$aiVetConversationsArgs<ExtArgs>
+  userNotificationSettings?: boolean | Prisma.User$userNotificationSettingsArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
 export type UserSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
+  name?: boolean
   email?: boolean
-  emailVerified?: boolean
-  firstName?: boolean
-  lastName?: boolean
   avatarUrl?: boolean
   plan?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  emailVerified?: boolean
+  image?: boolean
 }, ExtArgs["result"]["user"]>
 
 export type UserSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
+  name?: boolean
   email?: boolean
-  emailVerified?: boolean
-  firstName?: boolean
-  lastName?: boolean
   avatarUrl?: boolean
   plan?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  emailVerified?: boolean
+  image?: boolean
 }, ExtArgs["result"]["user"]>
 
 export type UserSelectScalar = {
   id?: boolean
+  name?: boolean
   email?: boolean
-  emailVerified?: boolean
-  firstName?: boolean
-  lastName?: boolean
   avatarUrl?: boolean
   plan?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  emailVerified?: boolean
+  image?: boolean
 }
 
-export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "email" | "emailVerified" | "firstName" | "lastName" | "avatarUrl" | "plan" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
+export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "email" | "avatarUrl" | "plan" | "createdAt" | "updatedAt" | "emailVerified" | "image", ExtArgs["result"]["user"]>
 export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   sessions?: boolean | Prisma.User$sessionsArgs<ExtArgs>
   accounts?: boolean | Prisma.User$accountsArgs<ExtArgs>
+  pets?: boolean | Prisma.User$petsArgs<ExtArgs>
+  appointments?: boolean | Prisma.User$appointmentsArgs<ExtArgs>
+  tasks?: boolean | Prisma.User$tasksArgs<ExtArgs>
+  aiVetConversations?: boolean | Prisma.User$aiVetConversationsArgs<ExtArgs>
+  userNotificationSettings?: boolean | Prisma.User$userNotificationSettingsArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -697,17 +1328,22 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   objects: {
     sessions: Prisma.$SessionPayload<ExtArgs>[]
     accounts: Prisma.$AccountPayload<ExtArgs>[]
+    pets: Prisma.$PetPayload<ExtArgs>[]
+    appointments: Prisma.$AppointmentPayload<ExtArgs>[]
+    tasks: Prisma.$TaskPayload<ExtArgs>[]
+    aiVetConversations: Prisma.$AiVetConversationPayload<ExtArgs>[]
+    userNotificationSettings: Prisma.$UserNotificationSettingsPayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
+    name: string
     email: string
-    emailVerified: boolean
-    firstName: string | null
-    lastName: string | null
     avatarUrl: string | null
     plan: string
     createdAt: Date
     updatedAt: Date
+    emailVerified: boolean
+    image: string | null
   }, ExtArgs["result"]["user"]>
   composites: {}
 }
@@ -1104,6 +1740,11 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
   readonly [Symbol.toStringTag]: "PrismaPromise"
   sessions<T extends Prisma.User$sessionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$sessionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SessionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   accounts<T extends Prisma.User$accountsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$accountsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AccountPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  pets<T extends Prisma.User$petsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$petsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PetPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  appointments<T extends Prisma.User$appointmentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$appointmentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AppointmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  tasks<T extends Prisma.User$tasksArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$tasksArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TaskPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  aiVetConversations<T extends Prisma.User$aiVetConversationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$aiVetConversationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AiVetConversationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  userNotificationSettings<T extends Prisma.User$userNotificationSettingsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$userNotificationSettingsArgs<ExtArgs>>): Prisma.Prisma__UserNotificationSettingsClient<runtime.Types.Result.GetResult<Prisma.$UserNotificationSettingsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1134,14 +1775,14 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
  */
 export interface UserFieldRefs {
   readonly id: Prisma.FieldRef<"User", 'String'>
+  readonly name: Prisma.FieldRef<"User", 'String'>
   readonly email: Prisma.FieldRef<"User", 'String'>
-  readonly emailVerified: Prisma.FieldRef<"User", 'Boolean'>
-  readonly firstName: Prisma.FieldRef<"User", 'String'>
-  readonly lastName: Prisma.FieldRef<"User", 'String'>
   readonly avatarUrl: Prisma.FieldRef<"User", 'String'>
   readonly plan: Prisma.FieldRef<"User", 'String'>
   readonly createdAt: Prisma.FieldRef<"User", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"User", 'DateTime'>
+  readonly emailVerified: Prisma.FieldRef<"User", 'Boolean'>
+  readonly image: Prisma.FieldRef<"User", 'String'>
 }
     
 
@@ -1580,6 +2221,121 @@ export type User$accountsArgs<ExtArgs extends runtime.Types.Extensions.InternalA
   take?: number
   skip?: number
   distinct?: Prisma.AccountScalarFieldEnum | Prisma.AccountScalarFieldEnum[]
+}
+
+/**
+ * User.pets
+ */
+export type User$petsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Pet
+   */
+  select?: Prisma.PetSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Pet
+   */
+  omit?: Prisma.PetOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PetInclude<ExtArgs> | null
+  where?: Prisma.PetWhereInput
+  orderBy?: Prisma.PetOrderByWithRelationInput | Prisma.PetOrderByWithRelationInput[]
+  cursor?: Prisma.PetWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.PetScalarFieldEnum | Prisma.PetScalarFieldEnum[]
+}
+
+/**
+ * User.appointments
+ */
+export type User$appointmentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Appointment
+   */
+  select?: Prisma.AppointmentSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Appointment
+   */
+  omit?: Prisma.AppointmentOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AppointmentInclude<ExtArgs> | null
+  where?: Prisma.AppointmentWhereInput
+  orderBy?: Prisma.AppointmentOrderByWithRelationInput | Prisma.AppointmentOrderByWithRelationInput[]
+  cursor?: Prisma.AppointmentWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.AppointmentScalarFieldEnum | Prisma.AppointmentScalarFieldEnum[]
+}
+
+/**
+ * User.tasks
+ */
+export type User$tasksArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Task
+   */
+  select?: Prisma.TaskSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Task
+   */
+  omit?: Prisma.TaskOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TaskInclude<ExtArgs> | null
+  where?: Prisma.TaskWhereInput
+  orderBy?: Prisma.TaskOrderByWithRelationInput | Prisma.TaskOrderByWithRelationInput[]
+  cursor?: Prisma.TaskWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.TaskScalarFieldEnum | Prisma.TaskScalarFieldEnum[]
+}
+
+/**
+ * User.aiVetConversations
+ */
+export type User$aiVetConversationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the AiVetConversation
+   */
+  select?: Prisma.AiVetConversationSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the AiVetConversation
+   */
+  omit?: Prisma.AiVetConversationOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AiVetConversationInclude<ExtArgs> | null
+  where?: Prisma.AiVetConversationWhereInput
+  orderBy?: Prisma.AiVetConversationOrderByWithRelationInput | Prisma.AiVetConversationOrderByWithRelationInput[]
+  cursor?: Prisma.AiVetConversationWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.AiVetConversationScalarFieldEnum | Prisma.AiVetConversationScalarFieldEnum[]
+}
+
+/**
+ * User.userNotificationSettings
+ */
+export type User$userNotificationSettingsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the UserNotificationSettings
+   */
+  select?: Prisma.UserNotificationSettingsSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the UserNotificationSettings
+   */
+  omit?: Prisma.UserNotificationSettingsOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserNotificationSettingsInclude<ExtArgs> | null
+  where?: Prisma.UserNotificationSettingsWhereInput
 }
 
 /**
