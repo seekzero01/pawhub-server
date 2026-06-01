@@ -109,3 +109,8 @@ export type AiVetConversation = Prisma.AiVetConversationModel
  * 
  */
 export type AiVetMessage = Prisma.AiVetMessageModel
+/**
+ * Model TwoFactor
+ * 
+ */
+export type TwoFactor = Prisma.TwoFactorModel

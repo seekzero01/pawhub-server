@@ -64,7 +64,8 @@ export const ModelName = {
   MedicationLog: 'MedicationLog',
   Task: 'Task',
   AiVetConversation: 'AiVetConversation',
-  AiVetMessage: 'AiVetMessage'
+  AiVetMessage: 'AiVetMessage',
+  TwoFactor: 'TwoFactor'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -92,7 +93,8 @@ export const UserScalarFieldEnum = {
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   emailVerified: 'emailVerified',
-  image: 'image'
+  image: 'image',
+  twoFactorEnabled: 'twoFactorEnabled'
 } as const
 
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
@@ -287,6 +289,17 @@ export const AiVetMessageScalarFieldEnum = {
 } as const
 
 export type AiVetMessageScalarFieldEnum = (typeof AiVetMessageScalarFieldEnum)[keyof typeof AiVetMessageScalarFieldEnum]
+
+
+export const TwoFactorScalarFieldEnum = {
+  id: 'id',
+  secret: 'secret',
+  backupCodes: 'backupCodes',
+  userId: 'userId',
+  verified: 'verified'
+} as const
+
+export type TwoFactorScalarFieldEnum = (typeof TwoFactorScalarFieldEnum)[keyof typeof TwoFactorScalarFieldEnum]
 
 
 export const SortOrder = {

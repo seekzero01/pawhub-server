@@ -1,7 +1,7 @@
 import { betterAuth } from "better-auth";
 import { prismaAdapter } from "better-auth/adapters/prisma";
 import "dotenv/config.js"
-import {emailOTP, haveIBeenPwned} from "better-auth/plugins";
+import {haveIBeenPwned, twoFactor} from "better-auth/plugins";
 import prisma from "./prisma";
 
 export const auth = betterAuth({
@@ -15,7 +15,9 @@ export const auth = betterAuth({
     emailVerification: {
         sendOnSignUp: false,
     },
+    appName: "PawHub",
     plugins: [
-        haveIBeenPwned()
+        haveIBeenPwned(),
+        twoFactor(),
     ]
 });

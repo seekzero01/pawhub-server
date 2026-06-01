@@ -366,10 +366,6 @@ export type UserNotificationSettingsUncheckedUpdateOneWithoutUserNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserNotificationSettingsUpdateToOneWithWhereWithoutUserInput, Prisma.UserNotificationSettingsUpdateWithoutUserInput>, Prisma.UserNotificationSettingsUncheckedUpdateWithoutUserInput>
 }
 
-export type NullableBoolFieldUpdateOperationsInput = {
-  set?: boolean | null
-}
-
 export type UserNotificationSettingsCreateWithoutUserInput = {
   id?: string
   medicationReminders?: boolean | null
