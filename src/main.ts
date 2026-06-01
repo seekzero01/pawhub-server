@@ -1,16 +1,17 @@
 import { NestFactory } from '@nestjs/core'
 import { AppModule } from './app.module'
 import { ValidationPipe } from '@nestjs/common'
+import "dotenv/config";
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, {
-    rawBody: true,
+    bodyParser: false,
   })
 
   app.useGlobalPipes(new ValidationPipe({ whitelist: true }))
 
   app.enableCors({
-    origin: process.env.CLIENT_URL ?? 'http://localhost:3000',
+    origin: ['http://localhost:3000','http://localhost:3001'],
     credentials: true,
   })
 
